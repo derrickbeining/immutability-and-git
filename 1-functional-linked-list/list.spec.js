@@ -1,16 +1,16 @@
 'use strict';
 
 const { expect } = require('chai');
-const ListNode   = require('./list');
-const getSha1    = require('../getSha1');
+const ListNode = require('./list');
+const getSha1 = require('../getSha1');
 const { markImmutableDataStructure, hasImmutableChanged } = require('./helpers');
 
-xdescribe('Functional Lists', function () {
+describe('Functional Lists', function () {
 
   let value1, value2, value3, value4, ln1, ln2, ln3, ln4;
 
   function hasAnyImmutableChanged () {
-    return [ln1, ln2, ln3, ln4].some(hasImmutableChanged);
+    return [ ln1, ln2, ln3, ln4 ].some(hasImmutableChanged);
   }
 
   beforeEach(function () {
@@ -24,7 +24,7 @@ xdescribe('Functional Lists', function () {
     ln3 = new ListNode(value3, ln2);
     ln4 = new ListNode(value4, ln3);
 
-    [ln1, ln2, ln3, ln4].forEach(markImmutableDataStructure);
+    [ ln1, ln2, ln3, ln4 ].forEach(markImmutableDataStructure);
 
   });
 
@@ -72,7 +72,7 @@ xdescribe('Functional Lists', function () {
     });
   });
 
-  describe('prepend', function() {
+  describe('prepend', function () {
     it('returns a new ListNode that holds the inputted value at the front and points to the original listNode', function () {
       expect(ln1.prepend('my new node value').next).to.equal(ln1);
       expect(ln4.prepend('my new node value').next).to.equal(ln4);
@@ -80,7 +80,7 @@ xdescribe('Functional Lists', function () {
     });
   });
 
-  describe('append', function() {
+  describe('append', function () {
     it('combines two lists together, returning the listNode pointing to the start of the list', function () {
       // creates a new list that is the nodes of the originalList and all the nodes in otherList
 
@@ -147,7 +147,7 @@ xdescribe('Functional Lists', function () {
     });
 
     it('returns the sublist that starts with a node with id', function () {
-      for (const listNode of [ln1, ln2, ln3, ln4]) {
+      for (const listNode of [ ln1, ln2, ln3, ln4 ]) {
         expect(ln4.find(listNode.id())).to.equal(listNode);
       }
       expect(hasAnyImmutableChanged()).to.equal(false);
